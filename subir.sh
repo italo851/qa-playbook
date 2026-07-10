@@ -45,4 +45,8 @@ git pull --rebase origin main
 git push origin main
 
 echo ""
+<<<<<<< HEAD
 echo "✅ Archivo publicado correctamente."
+=======
+echo "✅ Archivo publicado correctamente."
+>>>>>>> 2230dd4 (modificacion para aprender)
