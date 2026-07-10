@@ -2,30 +2,47 @@
 
 set -e
 
-# Verificar que estamos en un repositorio Git
+# Verificar repositorio
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    echo "❌ No estás dentro de un repositorio Git."
+    echo "No estás dentro de un repositorio Git."
     exit 1
 fi
 
-# Verificar cambios
-if [ -z "$(git status --porcelain)" ]; then
-    echo "✅ No hay cambios para subir."
+# Obtener archivos modificados
+mapfile -t archivos < <(git status --porcelain | awk '{print $2}')
+
+if [ ${#archivos[@]} -eq 0 ]; then
+    echo "No hay archivos modificados."
     exit 0
 fi
 
-MENSAJE="${1:-Actualización del QA Playbook}"
+echo ""
+echo "Archivos modificados:"
+echo "----------------------"
 
-echo "📄 Agregando archivos..."
-git add .
+for i in "${!archivos[@]}"; do
+    echo "$((i+1)). ${archivos[$i]}"
+done
 
-echo "💾 Creando commit..."
-git commit -m "$MENSAJE"
+echo ""
+read -p "Elegí el número del archivo: " opcion
 
-echo "⬇️ Actualizando repositorio..."
+archivo=${archivos[$((opcion-1))]}
+
+if [ -z "$archivo" ]; then
+    echo "Opción inválida."
+    exit 1
+fi
+
+echo ""
+echo "Seleccionaste: $archivo"
+
+read -p "Mensaje del commit: " mensaje
+
+git add "$archivo"
+git commit -m "$mensaje"
 git pull --rebase origin main
-
-echo "⬆️ Subiendo cambios..."
 git push origin main
 
-echo "🎉 ¡Todo salió correctamente!"
+echo ""
+echo "✅ Archivo publicado correctamente."
