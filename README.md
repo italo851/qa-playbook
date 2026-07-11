@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-## QA Playbook
-
-Este repositorio funciona como una **wiki viva** 
-## Modificado para probar automatizacion-----
-
-
---Esto es una prueba--------lll
-----
-=======
 ## 🧪 QA Playbook
  
 Repositorio de conocimiento del equipo QA orientado a documentar **cómo trabajamos**, nuestras **prácticas**, **herramientas** y el **entendimiento del negocio de Interbanking**.
@@ -26,8 +16,4 @@ Centralizar todo el conocimiento del equipo QA en un único lugar, logrando:
 - ✅ Estandarización de procesos de testing
 - 🤖 Capacidad de interacción mediante IA (preguntas y respuestas sobre cómo trabajamos)
 -- Nuevo.
-
- 
-<<<<<<< HEAD
-=======
->>>>>>> 4b3c08f (se mofica README.md)
+---chmod
